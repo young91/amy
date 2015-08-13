@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
@@ -7,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller {
 
+	protected $redirectTo = '/dashboard';
 	/*
 	|--------------------------------------------------------------------------
 	| Registration & Login Controller
@@ -35,4 +37,23 @@ class AuthController extends Controller {
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
 
+	public function postLogin(Request $request)
+	{
+			$this->validate($request, [
+				'email' => 'required|email', 'password' => 'required',
+			]);
+
+			$credentials = $request->only('email', 'password');
+
+			if ($this->auth->attempt(['email' => $request['email'], 'password' => $request['password'], 'active' => 1], $request->has('remember')))
+			{
+				return redirect()->intended($this->redirectPath());
+			}
+
+			return redirect($this->loginPath())
+						->withInput($request->only('email', 'remember'))
+						->withErrors([
+							'email' => $this->getFailedLoginMessage(),
+						]);
+	}
 }

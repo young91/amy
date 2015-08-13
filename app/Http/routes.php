@@ -10,12 +10,23 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::group(['domain' => 'yyf.focusgirls.cn', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
+		Route::get('dashboard', 'DashBoardController@index');
+	 	Route::get('admin', 'AdminController@index');
+	 	Route::get('user', 'UserController@index');
+	 	Route::get('user/add', 'UserController@add');
 
-Route::get('/', 'WelcomeController@index');
+		Route::get('/', 'DashBoardController@index');
+});
 
-Route::get('home', 'HomeController@index');
+Route::group(['domain' => 'www.focusgirls.cn'], function() {
+		Route::get('/', 'WelcomeController@index');
+		Route::get('home', 'HomeController@index');
+});
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
