@@ -4,7 +4,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
+use itbdw\QiniuStorage\QiniuStorage;
 
 class UserController extends Controller {
 
@@ -29,6 +33,19 @@ class UserController extends Controller {
 	public function add()
 	{
 			return view('admin.user_add');
+	}
+
+	public function postAddUser()
+	{
+			$file = Request::file('imgFile');
+			$extension = $file->getClientOriginalExtension();
+			$filename = $file->getFilename().'.'.$extension;
+
+			$disk = QiniuStorage::disk('qiniu');
+	    $disk->put($filename, File::get($file));               //上传文件
+
+		 $url = $disk->downloadUrl($filename);
+		 return redirect('user');
 	}
 
 	/**

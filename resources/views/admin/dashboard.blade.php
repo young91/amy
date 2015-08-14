@@ -2,6 +2,6 @@
 
 @section('content')
 <section class="wrapper" style="height: 700px;">
-      <p>Amy Club</p>
+      <p>Focus Club</p>
 </section>
 @endsection

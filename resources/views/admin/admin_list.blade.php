@@ -49,5 +49,14 @@
     </section>
     <!-- page end-->
 </section>
-<script src="js/editable-table.js"></script>
+@endsection
+
+@section('js')
+<script src="/js/editable-table.js"></script>
+<script src="/js/editable-table.js"></script>
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
+</script>
 @endsection

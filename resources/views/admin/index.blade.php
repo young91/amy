@@ -7,7 +7,7 @@
     <meta name="keyword" content="Amy Club">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <title>Amy Club</title>
+    <title>Focus Club</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo">Amy<span>Club</span></a>
+            <a href="index.html" class="logo">Focus<span>Club</span></a>
             <!--logo end-->
             <div class="top-nav ">
                 <!--search & user info start-->
@@ -144,14 +144,12 @@
   <script type="text/javascript" src="/assets/data-tables/jquery.dataTables.js"></script>
   <script type="text/javascript" src="/assets/data-tables/DT_bootstrap.js"></script>
 
+  <script type="text/javascript" src="/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+
     <!--script for this page only-->
 
+    @yield('js')
     <!-- END JAVASCRIPTS -->
-    <script>
-        jQuery(document).ready(function() {
-            EditableTable.init();
-        });
-    </script>
 
   </body>
 </html>
