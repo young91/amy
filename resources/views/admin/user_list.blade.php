@@ -46,10 +46,10 @@
                               <td><span class="label label-danger label-mini">是</span></td>
                           @endif
                           <td>
-                            <a href="javascript:void(0)"  onclick="updateWeight({{$user->uid}}, {{$user->name}})" data-toggle="modal" class="btn btn-xs btn-success">
+                            <a href="javascript:void(0)"  onclick="updateWeight({{$user->uid}}, '{{$user->name}}')" data-toggle="modal" class="btn btn-xs btn-success">
                                 更新体重
                             </a>
-                            <a href="javascript:void(0)"  onclick="updateVip({{$user->uid}}, {{$user->name}})" data-toggle="modal" class="btn btn-xs btn-info">
+                            <a href="javascript:void(0)"  onclick="updateVip({{$user->uid}}, '{{$user->name}}')" data-toggle="modal" class="btn btn-xs btn-info">
                                 续费
                             </a>
                             <a href="/user/updateService/{{$user->uid}}"  data-toggle="modal" class="btn btn-xs btn-primary">
