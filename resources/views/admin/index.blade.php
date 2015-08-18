@@ -9,9 +9,6 @@
 
     <title>Focus Club</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
     <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
@@ -26,7 +23,9 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/style-responsive.css" rel="stylesheet" />
 
-
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-reset.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -44,7 +43,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo">Focus<span>Club</span></a>
+            <a href="/dashboard" class="logo">Focus<span>Club</span></a>
             <!--logo end-->
             <div class="top-nav ">
                 <!--search & user info start-->
@@ -86,13 +85,14 @@
                           <span>会员管理</span>
                       </a>
                   </li>
-
+                  @if (Auth::user()->role == 1)
                   <li class="sub-menu">
                       <a class="{{ $view == 'admin' ? 'active' : '' }}" href="/admin" >
                           <i class="fa fa-cogs"></i>
                           <span>管理员</span>
                       </a>
                   </li>
+                  @endif
               </ul>
               <!-- sidebar menu end-->
           </div>

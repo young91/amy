@@ -19,13 +19,12 @@
 					<div class="panel-body">
 					  <div class=" form">
 						<form class="cmxform form-horizontal tasi-form" role="form"
-							enctype="multipart/form-data" id="commentForm"
-							action="javascript:submitComment();" method="post">
+							enctype="multipart/form-data" id="commentForm" action="/user/add" method="post">
               <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 							<div class="form-group">
 								<label class="col-xs-1 control-label">会员姓名</label>
 								<div class="col-xs-2">
-									<input type="text" class="form-control" name="username" id="username" required=true />
+									<input type="text" class="form-control" name="name" id="name" required=true />
 								</div>
 								<label class="col-xs-1 control-label">手机号码</label>
 								<div class="col-xs-2">
@@ -85,7 +84,10 @@
 								</div>
                 <label class="col-xs-1 control-label">城市</label>
 								<div class="col-xs-2">
-									<select class="form-control" id="fullName2" name="cityId"></select>
+									<select class="form-control" id="fullName2" name="cityId">
+										<option selected="selected">--请选择城市--</option>
+											<option value="2">北京市</option>
+									</select>
 								</div>
 							</div>
               <div class="form-group">
@@ -101,7 +103,7 @@
 							<div class="form-group">
 								<label class="col-xs-1 control-label">会员时间</label>
 								<div class="col-xs-2">
-                    <input type="text" class="form-control" name="vip_time" id="vip_time" placeholder="月" required=true />
+                    <input type="text" class="form-control" name="month" id="month" placeholder="月" required=true />
 								</div>
 								<label class="col-xs-1 control-label">费用</label>
 								<div class="col-xs-2">
@@ -110,34 +112,26 @@
 							</div>
 							<div class="form-group">
 								<label class="col-xs-1">上传图片</label>
-                <div class="col-md-9">
-                    <div class="fileupload fileupload-new" data-provides="fileupload">
-                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
-                        </div>
-                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                        <div>
-                         <span class="btn btn-white btn-file">
-                         <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
-                         <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                         <input type="file" class="default" name="imgFile" />
-                         </span>
-                            <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                        </div>
-                    </div>
-                </div>
+								<div class="col-md-6">
+											<a id="editable-sample_new"
+												class="btn btn-success fileinput-button"
+												data-container="body" data-toggle="popover"
+												data-placement="right" data-content="最多只可添加20张图片哦！"> <i
+												class="fa fa-plus"></i> 添加图片 </a>
+											<p></p>
+											<div id="imageBlock" style="display:inline-block; width:1100px"></div>
+								</div>
 							</div>
 							<div class="form-group">
                  <label class="col-xs-1">服务内容</label>
                  <div class="col-xs-5">
-                     <textarea id="description" class="wysihtml5 form-control" rows="5"
-                     		required=true name="description"></textarea>
+                     <textarea id="content" class="wysihtml5 form-control" rows="5"
+                     		required=true name="content"></textarea>
                  </div>
             	</div>
 							<div class="form-group">
 								<div class="col-lg-offset-2 col-xs-10">
-									<button class="btn btn-primary" id="saveCreateAudit"
-										type="submit" onClick="submitComment();"><i class="fa fa-check"></i> 提 交</button>
+									<button class="btn btn-primary" id="saveCreateAudit" type="submit"><i class="fa fa-check"></i> 提 交</button>
 								</div>
 							</div>
 							</div>
@@ -153,10 +147,51 @@
 @endsection
 @section('js')
 <script>
-function submitComment() {
-  $("#commentForm").attr("action",
-							"/user/add");
-					$("#commentForm").submit();
+function getImageDiv(blockNum) {
+	var imageDiv = '<div class="fileupload fileupload-new" id="fileupload'
+			+ blockNum
+			+ '" data-provides="fileupload" style="display:inline-block; width:200px">'
+			+ '<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">'
+			+ '<img src="/img/noImage.png" alt=""/>'
+			+ '</div>'
+			+ '<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>'
+			+ '<div>'
+			+ '<span class="btn btn-white btn-file">'
+			+ '<span class="fileupload-new"><i class="fa fa-paper-clip"></i>选 择 图 片</span>'
+			+ '<span class="fileupload-exists"><i class="fa fa-undo"></i> 更  换   </span>'
+			+ '<input type="file" name="imageFile[]" multiple/>'
+			+ '</span>'
+			+ '<a class="btn btn-danger fileupload-exists" id="remove'
+			+ blockNum
+			+ '" onclick="removeImage('
+			+ blockNum
+			+ ')" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> 移  除   </a>'
+			+ '</div>' + '<div id="errorMsg' + blockNum
+			+ '" style="color: red"></div>' + '</div>';
+	return imageDiv;
+}
+var divs = 1;
+$(function() {
+	$("#editable-sample_new").click(function() {
+		if (divs < 21) {
+			$("#imageBlock").append(getImageDiv(divs++));
+		} else {
+			$("[data-toggle='popover']").popover();
+		}
+	});
+});
+
+function removeImage(id) {
+	var removeName = "fileupload" + id;
+	$("#" + removeName).remove();
+	$(function() {
+		for (i = id; i < divs; i++) {
+			$("#fileupload" + (i + 1)).attr("id", "fileupload" + i);
+			$("#remove" + (i + 1)).attr("onclick", "removeImage(" + i + ")");
+			$("#remove" + (i + 1)).attr("id", "remove" + i);
+		}
+	});
+	divs--;
 }
 </script>
 @endsection

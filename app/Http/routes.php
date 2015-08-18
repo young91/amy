@@ -16,6 +16,11 @@ Route::group(['domain' => 'yyf.focusgirls.cn', 'namespace' => 'Admin', 'middlewa
 	 	Route::get('user', 'UserController@index');
 	 	Route::get('user/add', 'UserController@add');
 	 	Route::post('user/add', 'UserController@postAddUser');
+	 	Route::post('user/updateWeight', 'UserController@postupdateWeight');
+	 	Route::post('user/updateVip', 'UserController@postupdateVip');
+
+	 	Route::get('user/updateService/{uid}', 'UserController@getUserService');
+	 	Route::post('user/updateService', 'UserController@postupdateService');
 
 		Route::get('/', 'DashBoardController@index');
 });

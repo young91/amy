@@ -43,11 +43,9 @@ class AuthController extends Controller {
 				'email' => 'required|email', 'password' => 'required',
 			]);
 
-			$credentials = $request->only('email', 'password');
-
 			if ($this->auth->attempt(['email' => $request['email'], 'password' => $request['password'], 'active' => 1], $request->has('remember')))
 			{
-				return redirect()->intended($this->redirectPath());
+					return redirect()->intended($this->redirectPath());
 			}
 
 			return redirect($this->loginPath())
