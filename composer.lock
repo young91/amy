@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "24c3946acc997e3f3eca7fc5c99585b2",
+    "hash": "623f0ceea4c56321345053a1ba265557",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -260,6 +260,64 @@
                 "password"
             ],
             "time": "2013-04-30 19:58:08"
+        },
+        {
+            "name": "itbdw/laravel-storage-qiniu",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itbdw/laravel-storage-qiniu.git",
+                "reference": "8a36ff9bc944e1f42bba3de5152e6a168567f6da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itbdw/laravel-storage-qiniu/zipball/8a36ff9bc944e1f42bba3de5152e6a168567f6da",
+                "reference": "8a36ff9bc944e1f42bba3de5152e6a168567f6da",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "qiniu/php-sdk": "~7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "itbdw\\QiniuStorage\\": "src/"
+                }
+            },
+            "notification-url": "http://packagist.cn/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "zgldh",
+                    "email": "zgldh@hotmail.com",
+                    "role": "Original Developer"
+                },
+                {
+                    "name": "itbdw",
+                    "email": "itbudaoweng@gmail.com",
+                    "homepage": "http://github.com/itbdw",
+                    "role": "Developer"
+                },
+                {
+                    "name": "popfeng",
+                    "email": "popfeng@yeah.net",
+                    "homepage": "http://github.com/popfeng",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A storage library for laravel5 and qiniu sdk",
+            "keywords": [
+                "cloud",
+                "laravel",
+                "laravel5",
+                "qiniu",
+                "sdk",
+                "storage"
+            ],
+            "time": "2015-07-10 08:19:46"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -933,6 +991,131 @@
                 "shell"
             ],
             "time": "2015-03-26 18:43:54"
+        },
+        {
+            "name": "qiniu/php-sdk",
+            "version": "v7.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qiniu/php-sdk.git",
+                "reference": "a7c996cdf91e7059ce3da203ed9b246877f0a266"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/qiniu/php-sdk/zipball/a7c996cdf91e7059ce3da203ed9b246877f0a266",
+                "reference": "a7c996cdf91e7059ce3da203ed9b246877f0a266",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Qiniu\\": "src/Qiniu"
+                },
+                "files": [
+                    "src/Qiniu/functions.php"
+                ]
+            },
+            "notification-url": "http://packagist.cn/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Qiniu",
+                    "email": "sdk@qiniu.com",
+                    "homepage": "http://www.qiniu.com"
+                }
+            ],
+            "description": "Qiniu Resource (Cloud) Storage SDK for PHP",
+            "homepage": "http://developer.qiniu.com/",
+            "keywords": [
+                "cloud",
+                "qiniu",
+                "sdk",
+                "storage"
+            ],
+            "time": "2015-07-24 01:24:17"
+        },
+        {
+            "name": "squizlabs/php_codesniffer",
+            "version": "2.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+                "reference": "c1a26c729508f73560c1a4f767f60b8ab6b4a666"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/c1a26c729508f73560c1a4f767f60b8ab6b4a666",
+                "reference": "c1a26c729508f73560c1a4f767f60b8ab6b4a666",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.1.2"
+            },
+            "bin": [
+                "scripts/phpcs",
+                "scripts/phpcbf"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "CodeSniffer.php",
+                    "CodeSniffer/CLI.php",
+                    "CodeSniffer/Exception.php",
+                    "CodeSniffer/File.php",
+                    "CodeSniffer/Fixer.php",
+                    "CodeSniffer/Report.php",
+                    "CodeSniffer/Reporting.php",
+                    "CodeSniffer/Sniff.php",
+                    "CodeSniffer/Tokens.php",
+                    "CodeSniffer/Reports/",
+                    "CodeSniffer/Tokenizers/",
+                    "CodeSniffer/DocGenerators/",
+                    "CodeSniffer/Standards/AbstractPatternSniff.php",
+                    "CodeSniffer/Standards/AbstractScopeSniff.php",
+                    "CodeSniffer/Standards/AbstractVariableSniff.php",
+                    "CodeSniffer/Standards/IncorrectPatternException.php",
+                    "CodeSniffer/Standards/Generic/Sniffs/",
+                    "CodeSniffer/Standards/MySource/Sniffs/",
+                    "CodeSniffer/Standards/PEAR/Sniffs/",
+                    "CodeSniffer/Standards/PSR1/Sniffs/",
+                    "CodeSniffer/Standards/PSR2/Sniffs/",
+                    "CodeSniffer/Standards/Squiz/Sniffs/",
+                    "CodeSniffer/Standards/Zend/Sniffs/"
+                ]
+            },
+            "notification-url": "http://packagist.cn/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Sherwood",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+            "homepage": "http://www.squizlabs.com/php-codesniffer",
+            "keywords": [
+                "phpcs",
+                "standards"
+            ],
+            "time": "2015-06-24 03:16:23"
         },
         {
             "name": "swiftmailer/swiftmailer",

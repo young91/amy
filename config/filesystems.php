@@ -47,6 +47,13 @@ return [
 			'driver' => 'local',
 			'root'   => storage_path().'/app',
 		],
+		'qiniu' => [
+					 'driver' => 'qiniu',
+					 'domain' => env('QINIU_DOMAIN'),
+					 'access_key'    => env('QINIU_AK'),
+					 'secret_key' => env('QINIU_SK'),
+					 'bucket' => env('QINIU_BUCKET'),
+			 ],
 
 		's3' => [
 			'driver' => 's3',
