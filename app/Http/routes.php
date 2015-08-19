@@ -22,6 +22,8 @@ Route::group(['domain' => 'yyf.focusgirls.cn', 'namespace' => 'Admin', 'middlewa
 	 	Route::get('user/updateService/{uid}', 'UserController@getUserService');
 	 	Route::post('user/updateService', 'UserController@postupdateService');
 
+	 	Route::get('user/userDetail/{uid}', 'UserController@getUserDetail');
+
 		Route::get('/', 'DashBoardController@index');
 });
 

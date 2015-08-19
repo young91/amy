@@ -45,7 +45,7 @@
                           @else
                               <td><span class="label label-danger label-mini">是</span></td>
                           @endif
-                          <td>
+                          <td class="text-center">
                             <a href="javascript:void(0)"  onclick="updateWeight({{$user->uid}}, '{{$user->name}}')" data-toggle="modal" class="btn btn-xs btn-success">
                                 更新体重
                             </a>
@@ -54,6 +54,9 @@
                             </a>
                             <a href="/user/updateService/{{$user->uid}}"  data-toggle="modal" class="btn btn-xs btn-primary">
                                 添加服务记录
+                            </a>
+                            <a href="/user/userDetail/{{$user->uid}}"  data-toggle="modal" class="btn btn-xs btn-danger">
+                                详情
                             </a>
                           </td>
                       </tr>

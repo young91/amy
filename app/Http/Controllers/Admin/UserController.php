@@ -146,7 +146,7 @@ class UserController extends Controller {
 								]);
 					}
 			}
-			return redirect('user');
+			return redirect()->back();
 	}
 
 	/**
@@ -181,7 +181,7 @@ class UserController extends Controller {
 			  				]);
 					}
 			}
-			return redirect('user');
+			return redirect()->back();
 	}
 
 
@@ -243,6 +243,27 @@ class UserController extends Controller {
 			}
 
 			return $url;
+	}
+
+
+	function getUserDetail($uid)
+	{
+			$user = User::find($uid);
+			$user_weights = [];
+			$user_services = [];
+			$user_vip = [];
+			if($user)
+			{
+					$user_weights = UserWeight::where('uid', '=', $user->uid)->get()->sortByDesc('create_time');
+					$user_services = UserService::where('uid', '=', $user->uid)->get()->sortByDesc('create_time');
+					$user_vip = UserVip::where('uid', '=', $user->uid)->get()->sortByDesc('create_time');
+
+					foreach ($user_services as & $service) {
+							$service->img = json_decode($service->img);
+					}
+			}
+
+			return view('admin.user_detail', ['user' => $user,'weights' => $user_weights, 'services' => $user_services, 'vips' => $user_vip]);
 	}
 
 	/**
