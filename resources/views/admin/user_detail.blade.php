@@ -44,19 +44,20 @@
     								<div class="col-xs-2">
     									<input type="text" class="form-control" name="height" id="height" value="{{$user->height}}" readonly />
     								</div>
-    								<label class="col-xs-1 control-label">体重</label>
-    								<div class="col-xs-2">
-    						         <input type="text" class="form-control" name="weight" id="weight" value="{{$user->weight}}" readonly/>
-    								</div>
-    							</div>
-    							<div class="form-group">
                     <label class="col-xs-1 control-label">最近体重</label>
     								<div class="col-xs-2">
                         <input type="text" class="form-control" name="fee" id="fee" value="{{$user->last_weight}}" readonly/>
     								</div>
+    							</div>
+    							<div class="form-group">
+
     								<label class="col-xs-1 control-label">会员到期时间</label>
     								<div class="col-xs-2">
                         <input type="text" class="form-control" name="month" id="month" value="{{$user->vip_end_time}}" readonly/>
+    								</div>
+                    <label class="col-xs-1 control-label">BMI</label>
+    								<div class="col-xs-2">
+                        <input type="text" class="form-control" name="bmi" id="month" value="{{ round(($user->last_weight/2) / pow($user->height/100, 2), 1) }}" readonly/>
     								</div>
     							</div>
     							</div>
