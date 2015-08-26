@@ -28,7 +28,7 @@
 								</div>
 								<label class="col-xs-1 control-label">手机号码</label>
 								<div class="col-xs-2">
-									<input type="text" class="form-control" name="mobile" id="mobile" maxlength="11" required=true />
+									<input type="text" class="form-control" name="mobile" id="mobile" maxlength="11" minlength="11" required=true />
 								</div>
 							</div>
 							<div class="form-group">
