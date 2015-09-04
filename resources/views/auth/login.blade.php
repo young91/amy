@@ -22,13 +22,6 @@
 					<input type="checkbox" name="remember"> Remember me
 			</label>
 			<button class="btn btn-lg btn-login btn-block" type="submit">登录</button>
-			<div class="registration">
-					没有账号?
-					<a class="" href="/auth/register">
-							注册
-					</a>
-			</div>
-
 	</div>
 </form>
 @endsection
