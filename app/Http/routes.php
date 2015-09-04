@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['domain' => 'yyf.focusgirls.cn', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
+Route::group(['domain' => 'yys.focusgirls.cn', 'namespace' => 'Admin', 'middleware' => 'auth'], function() {
 		Route::get('dashboard', 'DashBoardController@index');
 	 	Route::get('admin', 'AdminController@index');
 	 	Route::get('user', 'UserController@index');
