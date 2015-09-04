@@ -21,7 +21,8 @@ class DashBoard extends Controller {
 	 */
 	public function index()
 	{
-		return view('admin.dashboard');
+		return redirect('user'); 
+		// return view('admin.dashboard');
 	}
 
 	/**
